@@ -9,15 +9,13 @@ public class Main {
                 DBConfig.getUser(),
                 DBConfig.getPassword()
         )) {
-            String sql = "UPDATE empleado SET nombre = ?, salario = ? WHERE id = ?";
-
-            //Introducir en el statement los parámetros
+            String sql = "DELETE FROM empleado WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, "Kiro");
-            preparedStatement.setDouble(2,2500.67);
-            preparedStatement.setInt(3,1);
-            int filasActualizadas = preparedStatement.executeUpdate(); //Mostrar número de filas afectadas
-            System.out.println("Datos actualizados. Filas afectadas: " + filasActualizadas);
+
+            preparedStatement.setInt(1, 10);
+
+            int filasActualizadas = preparedStatement.executeUpdate(); //Número de filas afectadas
+            System.out.println("Empleado eliminado. Filas afectadas: " + filasActualizadas);
 
         }catch (SQLException e){
             System.out.println("Error --> "+e.getMessage());
